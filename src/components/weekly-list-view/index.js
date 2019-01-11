@@ -12,11 +12,12 @@ export default class ListView extends React.Component {
         data: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
         qweeks: PropTypes.arrayOf(PropTypes.any),
         onButtonClick: PropTypes.func.isRequired,
-        onDetailsClick: PropTypes.func.isRequired
+        onDetailsClick: PropTypes.func.isRequired,
+        userSelf:PropTypes.bool.isRequired
     }
 
     render() {
-        const { data, qweeks, onButtonClick, onDetailsClick } = this.props;
+        const { data, qweeks, onButtonClick, onDetailsClick,userSelf } = this.props;
         return (
             <>
                 {data.map((item, index) => {
@@ -44,6 +45,7 @@ export default class ListView extends React.Component {
                             index={index}
                             onButtonClick={onButtonClick}
                             onDetailsClick={onDetailsClick}
+                            userSelf={userSelf}
                         />
                     );
                 })}

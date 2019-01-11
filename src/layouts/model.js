@@ -1,3 +1,6 @@
+import { routerRedux } from 'dva/router';
+import { logOut } from './service';
+
 export default {
     namespace: 'layOut',
 
@@ -9,7 +12,10 @@ export default {
     ],
 
     effects: {
-        *nothing({ payload }, { call, put }) {
+        *logOut({ payload }, { call, put }) {
+            yield call(logOut, payload);
+            window.sessionStorage.setItem("weekly-authority", '');
+            yield put(routerRedux.push('/login'));
         }
     },
 

@@ -12,8 +12,8 @@ const opts = (params) => {
         }
     }
 }
-//weekly
-export async function fetchWeeklyAll(params) {
-    return request('/api/support/week/getWeeklys', opts(params));
+//userDetails
+export async function getUser(params) {
+    return request('/api/support/week/getUser', opts(params));
 }
 

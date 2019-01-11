@@ -12,7 +12,13 @@ const opts = (params) => {
         }
     }
 }
-//weekly
-export async function login(params) {
-    return request('/api/support/week/login', opts(params));
+//okr
+export async function getOkrDetail(params) {
+    return request('/api/support/week/getOkrDetail', opts(params));
 }
+
+export async function getKrWeeklys(params) {
+    return request('/api/support/week/getKrWeeklys', opts(params));
+}
+
+

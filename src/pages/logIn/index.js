@@ -4,12 +4,13 @@ import { connect } from "dva";
 import Login from 'ant-design-pro/lib/Login';
 import { Alert, Checkbox } from 'antd';
 import style from './index.less';
+// import { reloadAuthorized } from '../../utils/Authorized';
+// import { dispatch } from "rxjs/internal/observable/pairs";
 
 const { Tab, UserName, Password, Submit } = Login;
 
 class LoginDemo extends React.Component {
   state = {
-    notice: '',
     type: 'tab1',
     autoLogin: true
   }
@@ -18,36 +19,13 @@ class LoginDemo extends React.Component {
   }
 
   onSubmit = (err, values) => {
-    let username = "";
-    //const { autoLogin, type } = this.state;
-    const { history } = this.props;
-    if (values.username) {
-      username = values.username;
-    }
-    window.localStorage.setItem("weekly-authority", username);
-    this.loginIn("/api/support/week/login", { "ldapName": "wei.wu01", "password": "Ww5201314,,,,,," });
-    history.push('/');
+    const { username, password } = values
+    const { dispatch } = this.props;
+    dispatch({
+      type: 'login/login',
+      payload: { ldapName: username, password }
+    })
   }
-
-  loginIn = (api, data) => {
-    let opts = {
-      method: "post",
-      body: JSON.stringify(data),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    };
-    fetch(api, opts)
-      .then((response) => {
-        return response.json();
-      })
-      .then((responseData) => {
-      })
-      .catch((error) => {
-        // eslint-disable-next-line
-        console.log("login fail: ", error);
-      });
-  };
 
   onTabChange = (key) => {
     this.setState({
@@ -64,7 +42,8 @@ class LoginDemo extends React.Component {
   }
 
   render() {
-    const { type, notice, autoLogin } = this.state;
+    const { type, autoLogin } = this.state;
+    const { notice } = this.props;
     return (
       <div className={style.loginBackground}>
         <Login
@@ -99,8 +78,8 @@ class LoginDemo extends React.Component {
   }
 }
 
-// const mapStateToProps = state => ({
-//   authority: state.ReducerLogin.ladp
-// });
+const mapStateToProps = ({ login }) => ({
+  notice: login.notice
+});
 
-export default connect()(LoginDemo);
+export default connect(mapStateToProps)(LoginDemo);

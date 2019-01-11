@@ -1,18 +1,27 @@
 module.exports = [
     // user
-    // {
-    //     path:'/login',
-    //     component:'./src/layouts'
-    // },
+    {
+        path: '/login',
+        exact: true,
+        component: './login'
+    },
     // app
     {
         path: '/',
         component: '../layouts/index.js',
+        Routes:['./src/pages/Authorized.js'],
+        authority:['wien'],
         routes: [
             {
                 path: '/',
                 exact: true,
-                component: './index.js'
+                // redirect:'/weekly',
+                component: './weekly'
+            },
+            {
+                path: '/okr',
+                exact: true,
+                component: './okr'
             },
             {
                 path: '/edit',
@@ -23,6 +32,16 @@ module.exports = [
                 path: '/info',
                 exact: true,
                 component: './info'
+            },
+            {
+                path:'/staff',
+                exact:true,
+                component:'./staff'
+            },
+            {
+                path:'/attention',
+                exact:true,
+                component:'./attention'
             }
         ]
     }

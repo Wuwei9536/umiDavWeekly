@@ -13,6 +13,7 @@ const opts = (params) => {
     }
 }
 //weekly
-export async function login(params) {
-    return request('/api/support/week/login', opts(params));
+export async function fetchWeeklyAll(params) {
+    return request('/api/support/week/getWeeklys', opts(params));
 }
+

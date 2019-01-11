@@ -12,14 +12,15 @@ export default class ListItem extends React.Component {
         box: PropTypes.shape({}).isRequired, // 周报details
         index: PropTypes.number.isRequired, // 数组的序号
         onButtonClick: PropTypes.func.isRequired,
-        onDetailsClick: PropTypes.func.isRequired
+        onDetailsClick: PropTypes.func.isRequired,
+        userSelf: PropTypes.bool.isRequired
     }
 
 
     render() {
         // eslint-disable-next-line
-        const { data, bool, box, index, onButtonClick, onDetailsClick } = this.props;
-        const lastDate = moment(data.lastDate, 'YYYY-MM-DD')
+        const { data, bool, box, index, onButtonClick, onDetailsClick, userSelf } = this.props;
+        const lastDate = moment(data.lastDate, 'YYYY-MM-DD').add(1, 'days') //下周一的零点，判断之后，时间是零点
         return (
             <Row className={style.cardList}>
                 <Col span={4}>
@@ -60,20 +61,28 @@ export default class ListItem extends React.Component {
                                     </div>
                                 </Card>)
                             : <>
-                                {
-                                    (moment().isAfter(lastDate))
-                                        ? (
+                                    {userSelf ? (
+                                        <>
+                                            {
+                                                (moment().isAfter(lastDate))
+                                                    ? (
+                                                        <Card bordered={false} className={style.textCenter}>
+                                                            <p>你未填写本周周报</p>
+                                                        </Card>
+                                                    ) : (
+                                                        <Card bordered={false} className={style.textCenter}>
+                                                            <p>你还未填写本周周报，是否新建?</p>
+                                                            <Button type="primary" onClick={(e) => { onButtonClick(e, data.month, data.week, data.weekTime, data.year, data.quarter); }}>新建周报</Button>
+                                                        </Card>
+                                                    )
+                                            }
+                                        </>
+                                    ) : (
                                             <Card bordered={false} className={style.textCenter}>
-                                                <p>你未填写本周周报</p>
+                                                <p>他/她未填写本周周报</p>
                                             </Card>
-                                        ) : (
-                                            <Card bordered={false} className={style.textCenter}>
-                                                <p>你还未填写本周周报，是否新建?</p>
-                                                <Button type="primary" onClick={(e) => { onButtonClick(e, data.month, data.week, data.weekTime, data.year, data.quarter); }}>新建周报</Button>
-                                            </Card>
-                                        )
-                                }
-                            </>
+                                        )}
+                                </>
                     }
                 </Col>
             </Row>

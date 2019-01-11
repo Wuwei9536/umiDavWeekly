@@ -1,8 +1,41 @@
-#components-layout-demo-fixed-sider .logo {
-    height: 32px;
-    background: rgba(255,255,255,.2);
-    margin: 16px;
+.logo {
+  text-align: center;
+  padding: 40px 0px;
+  overflow: hidden;
+  background: rgb(250, 173, 20);
+  margin-bottom: 20px;
+  i{    
+    font-size: 60px;
+    color: rgb(255, 255, 255);
+    text-shadow: rgb(203, 137, 7) 0px 2px 5px;
+    }
   }
+
+
   .height100{
     height: 100%
+  }
+
+ .trigger {
+    font-size: 18px;
+    line-height: 64px;
+    padding: 0 24px;
+    cursor: pointer;
+    transition: color .3s;
+  }
+  
+  .trigger:hover {
+    color: #1890ff;
+  }
+
+  .Sider{
+    :global(.ant-layout-sider-zero-width-trigger){
+      top:10px;
+      background: white;
+      color: #1890ff
+    }
+  }
+
+  .marginLeft93{
+    margin-left: 93% !important
   }

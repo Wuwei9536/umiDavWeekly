@@ -17,7 +17,7 @@ export default {
       },
     }],
   ],
-  "proxy": {
+  proxy: {
     "/api": {
       "target": "http://weekly-dev.hsmob.com",
       "changeOrigin": true,

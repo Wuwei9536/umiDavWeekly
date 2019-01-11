@@ -8,13 +8,14 @@ const Option = Select.Option;
 export default class SelectView extends React.Component {
     static defaultProps = {
         onChange: () => { },
-        quarter: 0
+        quarter: 0,
+        defaultValue:null
     }
 
     static propTypes = {
         data: PropTypes.arrayOf(PropTypes.any).isRequired, // option数据
         onChange: PropTypes.func,
-        defaultValue: PropTypes.string.isRequired,
+        defaultValue: PropTypes.string,
         quarter: PropTypes.number
     }
 
