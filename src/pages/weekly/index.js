@@ -31,7 +31,7 @@ class WeeklyList extends React.Component {
     this.dateChoose = mondayDate;
     this.quarterChoose = mondayQuarter;
     this.quarterDisabled = mondayQuarter;
-    this.userId=''
+    this.userId = ''
   }
 
   static propTypes = {
@@ -42,14 +42,14 @@ class WeeklyList extends React.Component {
   }
 
   componentDidMount() {
-    const { dispatch,location } = this.props;
+    const { dispatch, location } = this.props;
     console.log('%cthis.props: ', 'font-size:15px;background-color: rgb(135, 208, 104);', this.props);
     const { search } = location;
     let fetchWeeklyAllParam;
-    if (search){
+    if (search) {
       fetchWeeklyAllParam = decodeURI(search.slice(1));
       this.userId = JSON.parse(fetchWeeklyAllParam).userId;
-    }else{
+    } else {
       fetchWeeklyAllParam = { "qtype": mondayQuarter, "userId": this.userId, "year": mondayYear }
     }
     dispatch({
@@ -135,7 +135,7 @@ class WeeklyList extends React.Component {
       year,
       month,
       qtype: quarter,
-      week: week - 1,
+      week: week,
       weekTime,
       from: 1
     };
@@ -151,14 +151,15 @@ class WeeklyList extends React.Component {
     const { history } = this.props
     let path = {
       pathname: '/info',
-      state: { weeklyId: id }
+      state: { weeklyId: id },
+      search: JSON.stringify({ userId: this.userId })
     };
     history.push(path);
   }
 
 
   render() {
-    const { weeklyListData, show} = this.props;
+    const { weeklyListData, show } = this.props;
     const { timeShow } = this.state;
     return (
       <Card>
@@ -188,7 +189,7 @@ class WeeklyList extends React.Component {
                 data={timeShow}
                 qweeks={weeklyListData.qweeks}
                 onButtonClick={this.onButtonClick}
-                userSelf = {this.userId===''}
+                userSelf={this.userId === ''}
               />) : <Spin className={style.loading} />
         }
       </Card>

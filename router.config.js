@@ -29,6 +29,11 @@ module.exports = [
                 component: './edit'
             },
             {
+                path: '/okrEdit',
+                exact: true,
+                component: './okrEdit'
+            },
+            {
                 path: '/info',
                 exact: true,
                 component: './info'

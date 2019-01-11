@@ -69,6 +69,10 @@ export default class ListItem extends React.Component {
                                                         <Card bordered={false} className={style.textCenter}>
                                                             <p>你未填写本周周报</p>
                                                         </Card>
+                                                    //     <Card bordered={false} className={style.textCenter}>
+                                                    //     <p>你还未填写本周周报，是否新建?</p>
+                                                    //     <Button type="primary" onClick={(e) => { onButtonClick(e, data.month, data.week, data.weekTime, data.year, data.quarter); }}>新建周报</Button>
+                                                    // </Card>
                                                     ) : (
                                                         <Card bordered={false} className={style.textCenter}>
                                                             <p>你还未填写本周周报，是否新建?</p>

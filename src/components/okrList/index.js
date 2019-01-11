@@ -94,7 +94,7 @@ export default class OkrList extends React.Component {
                             })}
                         </Card>
                     )
-                })};
+                })}
             </>
         )
     }

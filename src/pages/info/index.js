@@ -32,7 +32,11 @@ class Info extends React.Component {
     componentDidMount() {
         const { dispatch } = this.props;
         // eslint-disable-next-line
-        const { state } = this.props.location //通过state传参，放入sessionStorage
+        const { state, search } = this.props.location //通过state传参，放入sessionStorage
+        if (search) {
+            this.userId = JSON.parse(decodeURI(search.slice(1))).userId;
+            console.log('%c this.userId: ', 'font-size:15px;background-color: rgb(135, 208, 104);',  this.userId);
+        }
         if (state) { // 再次进入该页，判断有无传参，如若有，修改loaclstorage
             window.sessionStorage.setItem('infoParam', JSON.stringify(state));
         }
@@ -163,7 +167,7 @@ class Info extends React.Component {
                         </div>
                         <FooterToolbar>
                             <Button type="primary" onClick={this.backWeekly}>返回我的周报</Button>
-                            <Button onClick={this.toEditor}>编辑</Button>
+                            {this.userId === '' ? (<Button onClick={this.toEditor}>编辑</Button>) : null}
                         </FooterToolbar>
                     </> : <Spin tip='Loading' className={style.loading} />}
             </>

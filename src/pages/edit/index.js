@@ -44,7 +44,7 @@ class Edit extends React.Component {
         }
         this.editParam = JSON.parse(window.sessionStorage.getItem('editParam')); // 取用sessionStorage参数
         this.edtiMonth = this.editParam.month;
-        this.editWeek = this.editParam.week + 1;
+        this.editWeek = this.editParam.week;
         this.editWeekTime = this.editParam.weekTime;
         if (this.editParam.from) { // from值 用于判断是从详情页跳转至此，还是新建跳转。 1，新建跳转 2，详情编辑跳转
             dispatch({
@@ -90,7 +90,7 @@ class Edit extends React.Component {
     }
 
 
-    添加按钮
+    //添加按钮
     addItem = (id) => {
         this.form.validateFields((errors, value) => { // 校验表单
             if (!errors) {
@@ -180,9 +180,9 @@ class Edit extends React.Component {
                         newWeeklyVo: {
                             year,
                             qtype,
-                            month: 11,
-                            week: 1,
-                            weekTime: "11月5日-11月11日",
+                            month,
+                            week,
+                            weekTime,
                             weekResults: weekResults,
                             nextWeekPlans: nextWeekPlans,
                             weekQas: weekQas
